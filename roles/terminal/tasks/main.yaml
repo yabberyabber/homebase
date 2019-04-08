@@ -13,6 +13,7 @@
     - guake
     - python2
     - python3
+    - ripgrep
 
 - name: set inputrc to vim mode
   copy:
