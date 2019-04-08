@@ -10,10 +10,10 @@
     - gcc
     - make
     - vim
-    - guake
     - python2
     - python3
     - ripgrep
+    - mosh
 
 - name: set inputrc to vim mode
   copy:
