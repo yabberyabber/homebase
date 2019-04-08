@@ -1,0 +1,26 @@
+---
+- name: setup terminal environent
+  become: yes
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - tmux
+    - git
+    - gcc
+    - make
+    - vim
+    - guake
+    - python2
+    - python3
+
+- name: set inputrc to vim mode
+  copy:
+    src: inputrc
+    dest: "/home/{{ user }}/.inputrc"
+
+- name: setup vim
+  import_tasks: vim.yaml
+
+- name: setup tmux
+  import_tasks: tmux_navi.yaml

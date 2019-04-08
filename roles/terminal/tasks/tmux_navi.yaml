@@ -1,0 +1,5 @@
+---
+- name: tmux - copy tmuxrc
+  copy:
+    src: tmuxrc
+    dest: "/home/{{ user }}/.tmux.conf"

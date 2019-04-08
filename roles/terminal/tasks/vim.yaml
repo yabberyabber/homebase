@@ -1,0 +1,37 @@
+---
+- name: vim - install
+  become: yes
+  package:
+    name: vim
+    state: present
+
+- name: vim - setup plugins directory
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0777
+  with_items:
+    - "/home/{{ user }}/.vim/bundle"
+    - "/home/{{ user }}/.vim/autoload"
+  become: yes
+
+- name: vim - copy my vimrc
+  copy:
+    src: vimrc
+    dest: "/home/{{ user }}/.vimrc"
+
+- name: vim - download pathogen
+  get_url:
+    url: https://tpo.pe/pathogen.vim
+    dest: "/home/{{ user }}/.vim/autoload/pathogen.vim"
+    checksum: md5:eb4e4f0c8ca51ae15263c9255dfd6094
+
+- name: vim - download nerdtree
+  git:
+    repo: https://github.com/scrooloose/nerdtree.git
+    dest: "/home/{{ user }}/.vim/bundle/nerdtree"
+
+- name: vim - download TMUX navigator
+  git:
+    repo: https://github.com/christoomey/vim-tmux-navigator
+    dest: "/home/{{ user }}/.vim/bundle/vim-tmux-navigator"
