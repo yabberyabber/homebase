@@ -1,0 +1,11 @@
+---
+- name: install redshift
+  become: yes
+  package:
+    name: redshift-gtk
+    state: present
+
+- name: add redshift config
+  copy:
+    src: redshiftrc
+    dest: "/home/{{ user }}/.config/redshift.conf"

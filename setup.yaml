@@ -7,3 +7,4 @@
 
   roles:
     - terminal
+    - {role: 'graphical', tags: 'graphical'}
