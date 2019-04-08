@@ -1,0 +1,19 @@
+---
+  - hosts: localhost
+  connection: local
+
+  vars_prompt:
+    - name: github_user
+      prompt: "Github username"
+      private: no
+    - name: github_password
+      prompt: "Github password"
+      private: yes
+
+  vars_files:
+    - vars/{{ config_file }}.yml
+
+  roles:
+    - terminal
+
+---
