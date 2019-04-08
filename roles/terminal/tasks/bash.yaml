@@ -1,0 +1,29 @@
+--- 
+- name: create bash dir
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0777
+  with_items:
+    - "/home/{{ user }}/.bash"
+    - "/home/{{ user }}/bin"
+
+- name: install bashrc
+  copy:
+    src: bashrc
+    dest: "/home/{{ user }}/.bash/bashrc"
+
+- name: source bashrc in bashrc
+  lineinfile:
+    path: "/home/{{ user }}/.bashrc"
+    line: "source /home/{{ user }}/.bash/bashrc"
+
+- name: install git branch autocompletion script
+  copy:
+    src: git_completion
+    dest: "/home/{{ user }}/.bash/git-completion.bash"
+
+- name: source git branch autocomplete script in bashrc
+  lineinfile:
+    path: "/home/{{ user }}/.bashrc"
+    line: "source /home/{{ user }}/.bash/git-completion.bash"

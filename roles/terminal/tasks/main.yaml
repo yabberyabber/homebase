@@ -24,3 +24,6 @@
 
 - name: setup tmux
   import_tasks: tmux_navi.yaml
+
+- name: setup bash
+  import_tasks: bash.yaml
